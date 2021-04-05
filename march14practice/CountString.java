@@ -3,8 +3,10 @@ import java.util.Scanner;
 public class CountString {
 	public static void main(String[] args) {
 		Scanner get  = new Scanner(System.in);
+		//get string
 		System.out.println("Input :");
 		String str = toLowerCase(get.nextLine());
+		//get substring
 		System.out.println("Substring :");
 		String subString = toLowerCase(get.next());
 		int index = 0;
@@ -12,6 +14,7 @@ public class CountString {
 		while(index<str.length()-subString.length()+1) {
 			
 			if(str.charAt(index) == subString.charAt(0)) {
+				// if substing increase count
 				if(isSubString(str,subString,index)) {
 					count++;
 				}

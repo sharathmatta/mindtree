@@ -1,5 +1,6 @@
 package ProjectAllocation;
 //add managers
+
   //get manager count
   //get managers details and add
 //display menu
@@ -61,6 +62,7 @@ public class ProjectAllocation extends Manager {
 				menu = false;
 				break;
 			default:
+				System.out.println("Invalid choice");
 				break;	
 				
 			}

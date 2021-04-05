@@ -1,46 +1,51 @@
 package HospitalRecords;
 import java.util.Scanner;
+
 public class HospitalRecords extends Patient {
 	static Scanner get = new Scanner(System.in);
 	public static void main(String[] args) {
 		boolean menu = true;
-		System.out.println("Enter the number of Patients :");
-		int patientCount = get.nextInt();
-		Patient[] patients ;
-		patients = new Patient[patientCount];
-		for(int i = 0;i<patientCount;i++) {
-			patients[i] = addPatient();
-		}
-		displayPatients(patients);
+		Patient[] patients =new Patient[0];
 		do {
 			displayMenu();
 			System.out.println("Enter Your Choice :");
 			int choice  = get.nextInt();
 			switch(choice) {
 			case 1:
+				//add patients
+				  
 				patients = addIncomingPatients(patients);
 				System.out.println("Updated Patients Data :");
 				displayPatients(patients);
 				break;
 			case 2:
+				//delete patient and update patients
+				
 				patients = deleteOutgoingPatients(patients);
 				System.out.println("Updated Patients Data :");
 				displayPatients(patients);
 				break;
 			case 3:
+				//display patients treated by a doctor
+				  
 				displayPatientsTreatedByDoctor(patients);
 				break;
 			case 4:
-				
+				//display patients of same illness
+				  
 				displayPatientOfSameIllness(patients);
 				break;
 			case 5:
+				//display lowest billed patient
+				
 				displayLowestBilledPatient(patients);
 				break;
 			case 6:
+				System.out.println("Application closed");
 				menu = false;
 				break;
 			default:
+				System.out.println("Invalid Choice");
 				break;
 				
 			}
@@ -48,7 +53,11 @@ public class HospitalRecords extends Patient {
 		}while(menu);
 	}
 	
+	
+	
 	public static Patient addPatient() {
+		//get details and add
+				
 		System.out.println("Enter the Patient name :");
 		String name = get.next();
 		System.out.println("Enter the number of Days Admitted :");
@@ -63,6 +72,8 @@ public class HospitalRecords extends Patient {
 		return patient;
 	}
 	
+	
+	
 	public static void displayPatients(Patient[] patients) {
 		if(patients.length == 0) {
 			System.out.println("No data available");
@@ -73,6 +84,8 @@ public class HospitalRecords extends Patient {
 			}
 		}
 	}
+	
+	
 	
 	public static void displayPatient(Patient patient) {
 		System.out.println("*******************************************");
@@ -99,7 +112,11 @@ public class HospitalRecords extends Patient {
 		
 	}
 	
+	
+	
 	public static Patient[] addIncomingPatients(Patient[] patients) {
+		//get no of patients
+		  
 		System.out.println("Enter number of new patients :");
 		int newPatientCount = get.nextInt();
 		Patient[] updatedPatients = new Patient[patients.length + newPatientCount];
@@ -112,15 +129,20 @@ public class HospitalRecords extends Patient {
 		return updatedPatients;
 	}
 	
+	
+	
 	public static Patient[] deleteOutgoingPatients(Patient[] patients) {
+		
 		if(patients.length == 0) {
 			System.out.println("No data available");
 			return patients;
 		}
 		else {
+			//get patient name
+			  
 			System.out.println("Enter the name of the patient :");
 			String patientName = get.next();
-			
+			//check if patient available
 			boolean patientAvailable = false;
 			for(int i = 0;i<patients.length;i++) {
 				if(patients[i].getName().equals(patientName)) {
@@ -130,6 +152,8 @@ public class HospitalRecords extends Patient {
 			}
 			
 			if(patientAvailable) {
+				//delete patient if available
+				
 				Patient[] updatedPatients = new Patient[patients.length -1];
 				int j = 0;
 				for(int i = 0;i<patients.length;i++) {
@@ -155,14 +179,20 @@ public class HospitalRecords extends Patient {
 	}
 	
 	
+	
+	
 	public static void displayPatientOfSameIllness(Patient[] patients) {
 		if(patients.length == 0) {
 			System.out.println("No data available");
 			
 		}
 		else {
+			//get illness name
+			  
 			System.out.println("Enter illness name :");
 			String illnessName = get.next();
+			//find patients with the illness and display
+			
 			boolean patientsAvailable = false;
 			for(int i = 0;i<patients.length;i++) {
 				if(patients[i].getIllness().equals(illnessName)) {
@@ -177,17 +207,24 @@ public class HospitalRecords extends Patient {
 	}
 
 	
+	
+	
 	public static void displayPatientsTreatedByDoctor(Patient[] patients) {
 		if(patients.length == 0) {
 			System.out.println("No data available");
 			
 		}
 		else {
+			//get doctor name
+			  
 			System.out.println("Enter doctor name :");
 			String doctorName = get.next();
 			boolean patientsAvailable = false;
 			for(int i = 0;i<patients.length;i++) {
+				//find patients treated by doc and display
+				
 				if(patients[i].getDoctor().equals(doctorName)) {
+					
 					displayPatient(patients[i]);
 					patientsAvailable = true;
 				}
@@ -199,12 +236,15 @@ public class HospitalRecords extends Patient {
 	}
 	
 	
+	
+	
 	public static void displayLowestBilledPatient(Patient[] patients) {
 		if(patients.length == 0) {
 			System.out.println("No data available");
 			
 		}
 		else {
+			//find lowestbilled patient index
 			int lowestBilledIndex= 0;
 			for(int i = 1;i<patients.length;i++) {
 				if(patients[lowestBilledIndex].getBillAmount() > patients[i].getBillAmount()) {

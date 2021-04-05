@@ -1,5 +1,20 @@
 package MovieManager;
 import java.util.Scanner;
+//add movie
+  //get movie details
+//sort and display based on year
+//display movies with higher rating
+  //get min rating input
+  //loop through movies if movie rating greater than input display movie
+//display movies of casting
+  //get casting name
+  //loop through movies if casting name in movie.casting display movie
+//update rating
+  //get movie id
+  //if movie available get updated rating and update
+//delete movie
+  //get movie id
+  //delete movie and update movies
 public class MovieManager extends Movie {
 	static Scanner get = new Scanner(System.in);
 	public static void main(String[] args) {

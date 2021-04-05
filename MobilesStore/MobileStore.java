@@ -1,5 +1,15 @@
 package MobilesStore;
 import java.util.Scanner;
+//add mobile
+  //get movie details and add to existing movies
+//sort and display mobiles
+//update price of mobile
+  //get mobile id
+  //get updated price
+  //update price of movie 
+//delete mobile
+  //get mobile id
+  //if mobile available delte mobile and update mobiles
 public class MobileStore extends Mobile {
 	static Scanner get = new Scanner(System.in);
 	public static void main(String[] args) {

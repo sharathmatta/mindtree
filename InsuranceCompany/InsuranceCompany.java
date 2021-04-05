@@ -36,6 +36,8 @@ public class InsuranceCompany extends Policy {
 			}
 		}while(isMenu);
 	}
+	
+	
 	public static void displayMenu() {
 		System.out.println("1. Add policies");
 		System.out.println("2. Display policies with selected mode and has less than required fee :");
@@ -43,6 +45,8 @@ public class InsuranceCompany extends Policy {
 		System.out.println("4. Update Premium fee details of a policy");
 		System.out.println();
 	}
+	
+	
 	public static Policy[] addPolicies(Policy[] policies) {
 		//get number of policies to be added 
 		System.out.println("Enter number of policies to be added :");

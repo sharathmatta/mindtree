@@ -26,13 +26,12 @@ public class InventoryManagement extends Product {
 
 	public static void main(String[] args) {
 		boolean menu = true;
-		System.out.println("Enter the number of Products :");
-		int productCount = get.nextInt();
-		Product[] products;
-		products = new Product[productCount];
+		Product[] products = new Product[0];
 		displayProducts(products);
 		do {
 			displayMenu();
+			//add product
+			  
 			System.out.println("Enter Your Choice :");
 			int choice = get.nextInt();
 			switch (choice) {
@@ -42,18 +41,24 @@ public class InventoryManagement extends Product {
 				displayProducts(products);
 				break;
 			case 2:
+				//update quantity
+				  
 				products = updateQuantityOfProduct(products);
 				System.out.println("Updated products Data :");
 				displayProducts(products);
 				break;
 			case 3:
+				//display products of less quantity than input 
 				displayProductsWithLessQuantity(products);
 				break;
 			case 4:
-
+				//sort based on quantity and display
+				
 				sortAndDisplayByQuantity(products);
 				break;
 			case 5:
+				//delete product and update producdt
+				  
 				products = deleteProductFromInventory(products);
 				System.out.println("Updated products Data :");
 				displayProducts(products);
@@ -62,6 +67,7 @@ public class InventoryManagement extends Product {
 				menu = false;
 				break;
 			default:
+				System.out.println("Invalid Choice");
 				break;
 
 			}
@@ -71,6 +77,7 @@ public class InventoryManagement extends Product {
 	}
 
 	public static Product addProduct() {
+		
 		System.out.println("Enter the Product id :");
 		int id = get.nextInt();
 		System.out.println("Enter the Product name :");
@@ -116,6 +123,8 @@ public class InventoryManagement extends Product {
 	}
 
 	public static Product[] addNewProducts(Product[] products) {
+		//get  no of products to be added
+		  
 		System.out.println("Enter number of products to add :");
 		int newProductCount = get.nextInt();
 		Product[] updatedProducts = new Product[products.length + newProductCount];
@@ -123,6 +132,8 @@ public class InventoryManagement extends Product {
 			updatedProducts[i] = products[i];
 		}
 		for (int i = products.length; i < products.length + newProductCount; i++) {
+			//get details of n products and add to existing products
+			
 			updatedProducts[i] = addProduct();
 		}
 		return updatedProducts;
@@ -132,6 +143,8 @@ public class InventoryManagement extends Product {
 		if (products.length == 0) {
 			System.out.println("No data available");
 		} else {
+			//get product id
+			  
 			System.out.println("Enter product id : ");
 			int id = get.nextInt();
 			boolean productAvailable = false;
@@ -142,7 +155,11 @@ public class InventoryManagement extends Product {
 					productIndex = i;
 				}
 			}
+			//if product available get updated quantity value
+			//update quantity of given id
+			
 			if (productAvailable) {
+				
 				System.out.println("Enter the quantity");
 				int quantity = get.nextInt();
 				products[productIndex].setQuantity(quantity);
@@ -153,15 +170,21 @@ public class InventoryManagement extends Product {
 		return products;
 	}
 
+	  
+
 	public static void displayProductsWithLessQuantity(Product[] products) {
 		if (products.length == 0) {
 			System.out.println("No data available");
 		} else {
 			System.out.println("Enter the Quantity ");
+			//get quantity limit 
+			  
 			int quantityLimit = get.nextInt();
 			boolean productsAvailable = false;
 			System.out.println("Products with quantity less than " + quantityLimit + " are:");
 			for (int i = 0; i < products.length; i++) {
+				//if quantity less than input display product
+				
 				if (products[i].getQuantity() <= quantityLimit) {
 					displayProduct(products[i]);
 					productsAvailable = true;
@@ -191,6 +214,8 @@ public class InventoryManagement extends Product {
 			System.out.println("No data available");
 			return products;
 		} else {
+			//get product id
+			  
 			System.out.println("Enter product id to delete :");
 			int id = get.nextInt();
 			boolean productAvailable = false;
@@ -201,6 +226,7 @@ public class InventoryManagement extends Product {
 					productAvailable = true;
 				}
 			}
+			//if product available delete product and updated products
 			if (productAvailable) {
 				Product[] updatedProducts = new Product[products.length - 1];
 				int j = 0;
